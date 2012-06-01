@@ -1,0 +1,30 @@
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+	ServerName localhost
+        DocumentRoot /srv/www/moodle/
+        <Directory /srv/www/moodle/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Order allow,deny
+                allow from all
+<IfModule mod_php5.c>
+        php_flag magic_quotes_gpc Off
+        php_flag magic_quotes_runtime Off
+        php_flag file_uploads On
+        php_flag short_open_tag On
+        php_flag session.auto_start Off
+        php_flag session.bug_compat_warn Off
+
+        php_value upload_max_filesize 2M
+        php_value post_max_size 2M
+</IfModule>
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
